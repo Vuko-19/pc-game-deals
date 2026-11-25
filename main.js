@@ -74,9 +74,12 @@ function game_search (title) {
     return "Not in list";
 }
 
-var test = game_search("lego");
+function search_games(query) {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+  return deals.filter(g => g.title.toLowerCase().includes(q));
+}
 
-console.log(test); //test search
 
 function cheapest_game (deals) {
   let cheapest = deals[0]; //got stuck here
@@ -88,10 +91,8 @@ function cheapest_game (deals) {
   }
   return cheapest;
 }
-const cheapest = cheapest_game(deals); //got stuck here
-console.log(cheapest); // test cheapest sale price
 
-
+const cheapest = cheapest_game(deals);
 
 function games_on_sale(deals) {
   var games_sale = [];
@@ -103,5 +104,35 @@ function games_on_sale(deals) {
   return games_sale;
 }
 
-var games_sale = games_on_sale(deals);
-console.log(games_sale[5]);
+function render(list) {
+  document.getElementById("games").innerHTML = list.map(g => {
+    const pct = discount_percantage(g.normalPrice, g.salePrice);
+    const onSale = pct > 0;
+
+    return `
+    <div class="card ${onSale ? "on-sale" : ""}">
+      <h2>${g.title}</h2>
+      <p>${g.store}</p>
+      <p>$${g.salePrice.toFixed(2)} ${onSale ? `<s>$${g.normalPrice.toFixed(2)}</s>` : ""}</p>
+      ${onSale ? `<span class="badge">${pct}%</span>` : ""}
+    </div>
+    `;
+  }).join("");
+}
+
+document.getElementById("Sale-btn").addEventListener("click", () => {
+  render(games_on_sale(deals));
+});
+
+document.getElementById("all-btn").addEventListener("click", () => {
+  render(deals);
+});
+
+document.getElementById("game_name").addEventListener("input", (e) => {
+  const query = document.getElementById("game_name").value;
+  render(search_games(query));
+});
+
+document.getElementById("cheapest-btn").addEventListener("click", () => {
+  render([cheapest]);
+});
