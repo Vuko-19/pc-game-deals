@@ -92,7 +92,7 @@ function cheapest_game (deals) {
   return cheapest;
 }
 
-const cheapest = cheapest_game(deals);
+//const cheapest = cheapest_game(deals);
 
 function games_on_sale(deals) {
   var games_sale = [];
@@ -114,7 +114,7 @@ function render(list) {
       <h2>${g.title}</h2>
       ${onSale ? `<span class="tag">ON SALE</span>` : ""}
       <p>${g.store}</p>
-      <p>$${g.salePrice.toFixed(2)} ${onSale ? `<s>$${g.normalPrice.toFixed(2)}</s>` : ""}</p>
+      <p>R${g.salePrice.toFixed(2)} ${onSale ? `<s>R${g.normalPrice.toFixed(2)}</s>` : ""}</p>
       ${onSale ? `<span class="badge">-${pct}%</span>` : ""}
     </div>
     `;
