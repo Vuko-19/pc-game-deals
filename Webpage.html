@@ -3,14 +3,37 @@
     <head>
         <title>PC Game Deals</title>
         <script src="main.js" defer></script>
+        <style>
+            .tag{display: inline-block;
+            background: #c62828;
+            color: #fff;
+            font-size: 0.75em;
+            font-weight: bold;
+            padding: 2px 8px;}
+            h1{
+                color: black;
+                font-family: "Adumu", "consolas";
+                letter-spacing: 0.2em;
+            }
+            .badge{
+                display: inline-block;
+                background: green;
+                color: white;
+                font-size: 0.9em;
+                font-weight: bold;
+                letter-spacing: 0.3px;
+                padding: 2px 8px;
+            }
+        </style>
     </head>
     <body>
         <h1>PC Game Deals</h1>
         <form>
-            <label for="game_name">Game Search</label>
+            <!--<label for="game_name">Game Search</label>-->
             <input type="text" id="game_name" name="game_name" placeholder="Search games...">
         </form>
         <button id="search-btn">Search</button>
+        <br>
         <button id="Sale-btn">Show games on sale</button>
         <button id="all-btn">Show all games</button>
         <button id="cheapest-btn">Find cheapest game</button>

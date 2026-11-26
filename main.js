@@ -62,7 +62,7 @@ function discount_percantage(normalPrice, salePrice) { //calculate discount %
        return 0; //no discount
     }
     
-    return (((normalPrice - salePrice) / normalPrice) * 100 ); // % discount
+    return Math.round(((normalPrice - salePrice) / normalPrice) * 100 ); // % discount
 }
 
 function game_search (title) {
@@ -112,9 +112,10 @@ function render(list) {
     return `
     <div class="card ${onSale ? "on-sale" : ""}">
       <h2>${g.title}</h2>
+      ${onSale ? `<span class="tag">ON SALE</span>` : ""}
       <p>${g.store}</p>
       <p>$${g.salePrice.toFixed(2)} ${onSale ? `<s>$${g.normalPrice.toFixed(2)}</s>` : ""}</p>
-      ${onSale ? `<span class="badge">${pct}%</span>` : ""}
+      ${onSale ? `<span class="badge">-${pct}%</span>` : ""}
     </div>
     `;
   }).join("");
